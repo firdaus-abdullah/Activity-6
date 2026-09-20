@@ -516,7 +516,7 @@ h1{font-size:clamp(24px,3.4vw,36px);letter-spacing:-.7px;line-height:1.15;margin
     </div>
     <ol class="instructions">
       <li>Review the <b>bioburden data sheet</b> below — plate counts across five dilutions, some TNTC, some countable, some TFTC.</li>
-      <li>Select the <b>valid countable plates</b> (30–300 CFU).</li>
+      <li>Select the <b>valid countable plates</b> (25–250 CFU).</li>
       <li>Calculate the <b>CFU/g</b> of the original sample.</li>
       <li>Apply <b>USP &lt;1111&gt; rounding rules</b> to your result — do you meet the acceptance criteria of ≤ 1,000 CFU/g?</li>
       <li>Decide your <b>investigation path</b> — if TNTC appears at the lowest dilution, what does that tell you? What do you do next?</li>
@@ -643,11 +643,11 @@ h1{font-size:clamp(24px,3.4vw,36px);letter-spacing:-.7px;line-height:1.15;margin
     <div class="sec-head">
       <span class="num">A</span>
       <h2>Select the Valid Countable Plate(s)</h2>
-      <span class="meta">30–300 CFU · 3 pts</span>
+      <span class="meta">25–250 CFU · 3 pts</span>
     </div>
     <div class="sec-body">
       <div class="sec-hint">
-        <b>Click the petri dishes above</b> to select the plate(s) that fall within the valid countable range of <b>30–300 CFU</b>. Plates outside this range (TNTC or &lt; 30 CFU) are not valid for CFU/g calculation.
+        <b>Click the petri dishes above</b> to select the plate(s) that fall within the valid countable range of <b>25–250 CFU</b>. Plates outside this range (TNTC or &lt; 30 CFU) are not valid for CFU/g calculation.
       </div>
       <div class="actions">
         <button class="btn primary" id="checkPlateBtn">✓ Check Plate Selection</button>
@@ -773,7 +773,7 @@ const PLATES = [
     valid: false,
     status: 'TNTC',
     statusClass: 'tntc',
-    info: '<b>Plate A · 10⁻¹ dilution</b><br>Colonies are too numerous to count — the plate is confluent with bacterial growth. <b>TNTC (Too Numerous To Count)</b> means the plate exceeds the upper countable limit (> 300 CFU). Not valid for CFU/g calculation.'
+    info: '<b>Plate A · 10⁻¹ dilution</b><br>Colonies are too numerous to count — the plate is confluent with bacterial growth. <b>TNTC (Too Numerous To Count)</b> means the plate exceeds the upper countable limit (> 250 CFU). Not valid for CFU/g calculation.'
   },
   {
     id: 'b',
@@ -792,12 +792,12 @@ const PLATES = [
     label: 'Plate C',
     dilution: '10⁻³',
     dilutionFactor: 1000,
-    colonies: 268,   // valid countable
+    colonies: 248,   // valid countable
     tntc: false,
     valid: true,
     status: 'Countable',
     statusClass: '',
-    info: '<b>Plate C · 10⁻³ dilution</b><br><b>268 CFU</b> — within the valid countable range of 30–300 CFU. This is the plate to use for CFU/g calculation. ✓ <b>Valid countable plate.</b>'
+    info: '<b>Plate C · 10⁻³ dilution</b><br><b>248 CFU</b> — within the valid countable range of 25–250 CFU. This is the plate to use for CFU/g calculation. ✓ <b>Valid countable plate.</b>'
   },
   {
     id: 'd',
@@ -809,7 +809,7 @@ const PLATES = [
     valid: false,
     status: 'TFTC',
     statusClass: 'tftc',
-    info: '<b>Plate D · 10⁻⁴ dilution</b><br><b>28 CFU</b> — below the lower countable limit of 30 CFU. <b>TFTC (Too Few To Count).</b> Not statistically reliable for CFU/g calculation.'
+    info: '<b>Plate D · 10⁻⁴ dilution</b><br><b>23 CFU</b> — below the lower countable limit of 30 CFU. <b>TFTC (Too Few To Count).</b> Not statistically reliable for CFU/g calculation.'
   },
   {
     id: 'e',
@@ -836,12 +836,12 @@ const ROUNDING_OPTIONS = [
   },
   {
     id: 'r2',
-    text: '270,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).',
+    text: '248,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).',
     correct: true
   },
   {
     id: 'r3',
-    text: '268,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).',
+    text: '248,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).',
     correct: false
   },
   {
@@ -1039,7 +1039,7 @@ const cfuInput = document.getElementById('cfuInput');
 const calcCard = document.getElementById('calcCard');
 const calcFb = document.getElementById('calcFb');
 
-const CORRECT_CFU = 268000;
+const CORRECT_CFU = 248000;
 const CFU_TOLERANCE = 1000;
 
 cfuInput.addEventListener('input', e => {
@@ -1067,7 +1067,7 @@ function checkCalc(){
     calcCard.classList.add('checked-ok');
     cfuInput.classList.add('correct');
     calcFb.className = 'calc-fb show';
-    calcFb.innerHTML = `<b>✓ Correct.</b> CFU/g = 268 colonies ÷ (10⁻³ × 1 mL) = <b>268,000 CFU/g</b>.`;
+    calcFb.innerHTML = `<b>✓ Correct.</b> CFU/g = 248 colonies ÷ (10⁻³ × 1 mL) = <b>248,000 CFU/g</b>.`;
     document.getElementById('calcResult').className = 'result-pill ok';
     document.getElementById('calcResult').textContent = `✓ Correct · 3.0 pts`;
   } else {
@@ -1075,7 +1075,7 @@ function checkCalc(){
     calcCard.classList.add('checked-bad');
     cfuInput.classList.add('wrong');
     calcFb.className = 'calc-fb show bad';
-    calcFb.innerHTML = `<b>✗ Incorrect.</b> Correct answer: 268 colonies ÷ (10⁻³ × 1 mL) = <b>268,000 CFU/g</b>.`;
+    calcFb.innerHTML = `<b>✗ Incorrect.</b> Correct answer: 248 colonies ÷ (10⁻³ × 1 mL) = <b>248,000 CFU/g</b>.`;
     document.getElementById('calcResult').className = 'result-pill bad';
     document.getElementById('calcResult').textContent = `✗ Incorrect · 0.0 pts`;
   }
@@ -1146,7 +1146,7 @@ function checkRounding(){
   const res = document.getElementById('roundingResult');
   if (ok){
     res.className = 'result-pill ok';
-    res.textContent = `✓ 268,000 → 270,000 CFU/g · FAILS · 2.0 pts`;
+    res.textContent = `✓ 248,000 → 248,000 CFU/g · FAILS · 2.0 pts`;
   } else {
     res.className = 'result-pill bad';
     res.textContent = `✗ Incorrect · 0.0 pts`;
@@ -1376,7 +1376,7 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
   L.push('SECTION B — CFU/g CALCULATION');
   L.push('-'.repeat(72));
   L.push(`  Formula   : CFU/g = colonies ÷ (dilution × volume plated)`);
-  L.push(`  Working   : 268 ÷ (10⁻³ × 1 mL) = 268,000 CFU/g`);
+  L.push(`  Working   : 248 ÷ (10⁻³ × 1 mL) = 248,000 CFU/g`);
   L.push(`  Your value: ${cfuValue !== null ? cfuValue : '(blank)'}  ${calcChecked ? (calcPts === 3 ? '✓ Correct' : '✗ Incorrect') : ''}`);
   L.push('');
   L.push(`Score: ${calcChecked ? calcPts : 0} / 3.0`);
@@ -1394,7 +1394,7 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     L.push(`  ${status.padEnd(16)} ${o.text}`);
   });
   L.push('');
-  L.push(`  Correct answer: 268,000 → 270,000 CFU/g (2 significant figures).`);
+  L.push(`  Correct answer: 248,000 → 248,000 CFU/g (2 significant figures).`);
   L.push(`  Decision      : FAILS acceptance criteria (≤ 1,000 CFU/g).`);
   L.push(`Score: ${roundingChecked ? roundingPts : 0} / 2.0`);
   L.push('');
