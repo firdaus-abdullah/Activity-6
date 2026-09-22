@@ -913,8 +913,8 @@ const PLATES = [
    ========================================================= */
 const ROUNDING_OPTIONS = [
   { id: 'r1', text: '200,000 CFU/g — the batch MEETS the acceptance criteria (≤ 1,000 CFU/g).', correct: false },
-  { id: 'r2', text: '270,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).', correct: true  },
-  { id: 'r3', text: '268,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).', correct: false },
+  { id: 'r2', text: '268,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).', correct: true  },
+  { id: 'r3', text: '260,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).', correct: false },
   { id: 'r4', text: '300,000 CFU/g — the batch FAILS the acceptance criteria (≤ 1,000 CFU/g).', correct: false }
 ];
 
@@ -1212,7 +1212,7 @@ function checkRounding(){
   const res = document.getElementById('roundingResult');
   if (ok){
     res.className = 'result-pill ok';
-    res.textContent = `✓ 268,000 → 270,000 CFU/g · FAILS · 2.0 pts`;
+    res.textContent = `✓ 268,000 → 268,000 CFU/g · FAILS · 2.0 pts`;
   } else {
     res.className = 'result-pill bad';
     res.textContent = `✗ Incorrect · 0.0 pts`;
@@ -1505,7 +1505,7 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
     L.push(`  ${status.padEnd(16)} ${o.text}`);
   });
   L.push('');
-  L.push(`  Correct answer: 268,000 → 270,000 CFU/g (2 significant figures).`);
+  L.push(`  Correct answer: 268,000 → 268,000 CFU/g (2 significant figures).`);
   L.push(`  Decision      : FAILS acceptance criteria (≤ 1,000 CFU/g).`);
   L.push(`Score: ${roundingChecked ? roundingPts : 0} / 2.0`);
   L.push('');
